@@ -201,10 +201,6 @@ export default function Login({ onLoginSuccess, language, setLanguage }) {
             <span>{isLoading ? t.loggingIn : t.loginBtn}</span>
           </button>
         </form>
-
-        <div className="text-[10px] text-center text-slate-400 font-mono pt-2 border-t border-slate-100">
-          Supabase URL: {import.meta.env.VITE_SUPABASE_URL || "NOT_FOUND"}
-        </div>
       </div>
 
       {/* 3. Footer Copyright */}
