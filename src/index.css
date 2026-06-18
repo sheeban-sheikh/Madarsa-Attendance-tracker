@@ -1,0 +1,725 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@300;400;500;600;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  --color-primary-green: #0B8A43;
+  --color-secondary-green: #0E6B35;
+  --color-border-gray: #E5E7EB;
+  --color-text-dark: #111827;
+  --color-text-gray: #6B7280;
+
+  /* Overriding old green variables with the user's new colors */
+  --color-islamic-green-50: #f0fdf4;
+  --color-islamic-green-100: #dcfce7;
+  --color-islamic-green-200: #bbf7d0;
+  --color-islamic-green-300: #86efac;
+  --color-islamic-green-400: #4ade80;
+  --color-islamic-green-500: #22c55e;
+  --color-islamic-green-600: #16a34a;
+  --color-islamic-green-700: #0B8A43;
+  /* Primary Green (#0B8A43) */
+  --color-islamic-green-800: #0E6B35;
+  /* Secondary Green (#0E6B35) */
+  --color-islamic-green-900: #0d5a2d;
+  --color-islamic-green-950: #052e16;
+
+  --color-dark-green-50: #f0fdf4;
+  --color-dark-green-100: #dcfce7;
+  --color-dark-green-200: #bbf7d0;
+  --color-dark-green-300: #86efac;
+  --color-dark-green-400: #4ade80;
+  --color-dark-green-500: #22c55e;
+  --color-dark-green-600: #16a34a;
+  --color-dark-green-700: #15803d;
+  --color-dark-green-800: #166534;
+  --color-dark-green-900: #0E6B35;
+  /* Secondary Green (#0E6B35) */
+  --color-dark-green-950: #052e16;
+
+  --color-gold-50: #fdfbeb;
+  --color-gold-100: #fcf6c7;
+  --color-gold-200: #f9ec8f;
+  --color-gold-300: #f5db4c;
+  --color-gold-400: #f0c71a;
+  --color-gold-500: #d4af37;
+  /* Gold Accent */
+  --color-gold-600: #b88d22;
+  --color-gold-700: #916618;
+  --color-gold-800: #754f19;
+  --color-gold-900: #644219;
+  --color-gold-950: #3a220b;
+
+  --font-sans: 'Inter', 'Noto Sans Arabic', system-ui, sans-serif;
+  --font-urdu: 'Noto Sans Arabic', 'Noto Naskh Arabic', system-ui, sans-serif;
+}
+
+@layer base {
+  body {
+    background-color: #F4F5F7;
+    color: #111827;
+    font-family: 'Inter', 'Noto Sans Arabic', system-ui, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* RTL Support for Urdu font */
+  [dir="rtl"] {
+    font-family: 'Noto Sans Arabic', 'Noto Naskh Arabic', system-ui, sans-serif;
+  }
+}
+
+/* Custom Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.25s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Glassmorphism Cards */
+.glass-card {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(229, 231, 235, 0.6);
+}
+
+/* Hide default scrollbars but keep functionality */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+
+.app-shell::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 17rem;
+  height: 8.5rem;
+  background: #087a3a;
+  border-bottom-right-radius: 92% 72%;
+  box-shadow: inset -8px -8px 0 rgba(212, 175, 55, 0.55);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.app-shell>* {
+  position: relative;
+  z-index: 1;
+}
+
+.brand-corner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 18rem;
+  height: 9rem;
+  pointer-events: none;
+}
+
+/* ── Premium Splash Screen v2 ── */
+
+/* Theme constants */
+.splash-screen {
+  --sp-green: #0f4a2a;
+  --sp-gold: #D4AF37;
+  --sp-bg: #FAF9F4;
+  --sp-silhouette: #C7D8C5;
+  --sp-text: #1A1A1A;
+  position: relative;
+  overflow: hidden;
+  background: var(--sp-bg);
+}
+
+/* Premium full-screen subtle geometric pattern (3% opacity) */
+.splash-screen::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  opacity: 0.03;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 24px, var(--sp-green) 24px, var(--sp-green) 25px),
+    repeating-linear-gradient(90deg, transparent, transparent 24px, var(--sp-green) 24px, var(--sp-green) 25px),
+    repeating-linear-gradient(45deg, transparent, transparent 17px, var(--sp-green) 17px, var(--sp-green) 18px),
+    repeating-linear-gradient(-45deg, transparent, transparent 17px, var(--sp-green) 17px, var(--sp-green) 18px);
+  background-size: 25px 25px, 25px 25px, 24px 24px, 24px 24px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.splash-screen>* {
+  position: relative;
+  z-index: 1;
+}
+
+/* Scalloped dome ornament — top right (50% size reduction, gold outline only) */
+.splash-ornament {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 19%;
+  max-width: 90px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.splash-ornament svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Mosque SVG silhouette — bottom (full width, increased height, uncropped) */
+.splash-mosque-svg {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 25vh;
+  min-height: 180px;
+  max-height: 260px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.7;
+}
+
+.splash-mosque-svg svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Logo container (250% size increase, centered focal point) */
+.splash-logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 280px;
+  margin-bottom: 24px;
+}
+
+@media (min-width: 768px) {
+  .splash-logo-container {
+    width: 440px;
+    margin-bottom: 56px;
+  }
+}
+
+/* Balanced responsive controls section padding */
+.splash-controls-section {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-bottom: 27vh;
+}
+
+@media (min-width: 768px) {
+  .splash-controls-section {
+    padding-bottom: 24vh;
+  }
+}
+
+/* Premium Larger Language Buttons */
+.splash-lang-btn {
+  width: 140px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+  outline: none;
+  border: 1.5px solid transparent;
+}
+
+.splash-lang-btn:active {
+  transform: scale(0.95);
+}
+
+.splash-lang-btn--active {
+  background: var(--sp-green);
+  color: #fff;
+  border-color: var(--sp-green);
+  box-shadow: 0 8px 22px rgba(27, 94, 58, 0.24);
+}
+
+.splash-lang-btn--inactive {
+  background: #fff;
+  color: var(--sp-text);
+  border-color: rgba(27, 94, 58, 0.15);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+}
+
+/* Splash entrance animations */
+@keyframes splashFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes splashFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes splashOrnamentIn {
+  from {
+    opacity: 0;
+    transform: translate(30px, -30px) scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+.splash-anim-ornament {
+  animation: splashOrnamentIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.splash-anim-logo {
+  opacity: 0;
+  animation: splashFadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.15s forwards;
+}
+
+.splash-anim-title {
+  opacity: 0;
+  animation: splashFadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.35s forwards;
+}
+
+.splash-anim-buttons {
+  opacity: 0;
+  animation: splashFadeUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.55s forwards;
+}
+
+.splash-anim-footer {
+  opacity: 0;
+  animation: splashFadeIn 0.5s ease 0.7s forwards;
+}
+
+.splash-anim-mosque {
+  opacity: 0;
+  animation: splashFadeIn 0.9s ease 0.25s forwards;
+}
+body.dark {
+  background: #070e0a;
+}
+
+
+@media (min-width: 768px) {
+  .brand-header {
+    min-height: 6.5rem;
+  }
+
+  .product-frame {
+    width: min(1180px, calc(100% - 3rem));
+    margin: 0 auto 2rem;
+    min-height: 590px;
+    border: 1px solid rgba(203, 213, 225, 0.72);
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: 0 22px 70px rgba(15, 23, 42, 0.12);
+  }
+
+  .product-sidebar::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 92px;
+    background:
+      radial-gradient(circle at 48% 22%, rgba(11, 138, 67, 0.18) 0 22px, transparent 23px),
+      linear-gradient(to top, rgba(11, 138, 67, 0.18), rgba(11, 138, 67, 0));
+    clip-path: polygon(0 100%, 0 62%, 8% 62%, 8% 46%, 12% 46%, 12% 28%, 15% 28%, 15% 46%, 19% 46%, 19% 62%, 30% 62%, 30% 39%, 38% 18%, 46% 39%, 46% 62%, 54% 62%, 54% 45%, 60% 45%, 60% 31%, 63% 31%, 63% 45%, 68% 45%, 68% 62%, 82% 62%, 82% 46%, 86% 46%, 86% 30%, 89% 30%, 89% 46%, 93% 46%, 93% 62%, 100% 62%, 100% 100%);
+    pointer-events: none;
+  }
+
+  .product-main {
+    background: linear-gradient(180deg, rgba(248, 250, 252, 0.72), rgba(255, 255, 255, 0.96));
+  }
+}
+
+.product-main .bg-white {
+  box-shadow: 0 10px 32px rgba(15, 23, 42, 0.065);
+}
+
+.product-main .rounded-2xl,
+.product-main .rounded-\[16px\] {
+  border-radius: 18px;
+}
+
+.mobile-nav {
+  box-shadow: 0 -14px 36px rgba(15, 23, 42, 0.10);
+}
+
+.app-shell {
+  background:
+    radial-gradient(circle at 82% 8%, rgba(212, 175, 55, 0.12), transparent 20rem),
+    linear-gradient(180deg, #fbfaf6 0%, #f4f5f1 48%, #f7f8f4 100%);
+}
+
+.dark .app-shell {
+  background:
+    radial-gradient(circle at 82% 8%, rgba(212, 175, 55, 0.08), transparent 20rem),
+    linear-gradient(180deg, #020617 0%, #07120d 100%);
+}
+
+
+@media (max-width: 767px) {
+
+  .app-shell::before,
+  .brand-corner {
+    display: none;
+  }
+
+  .app-shell {
+    background: #ffffff;
+  }
+
+  .mobile-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 64px;
+    padding: 0.85rem 1.05rem;
+    background: rgba(255, 255, 255, 0.96);
+    border-bottom: 1px solid rgba(226, 232, 240, 0.9);
+    backdrop-filter: blur(16px);
+  }
+
+  .mobile-icon-btn {
+    display: grid;
+    height: 38px;
+    width: 38px;
+    place-items: center;
+    border-radius: 999px;
+    background: #fff;
+    color: #111827;
+    border: 1px solid rgba(226, 232, 240, 0.95);
+    box-shadow: 0 7px 18px rgba(15, 23, 42, 0.06);
+  }
+
+  .product-frame {
+    display: block;
+    overflow: visible;
+    flex: 1;
+  }
+
+  .product-main {
+    max-width: 430px;
+    min-height: calc(100vh - 64px);
+    margin: 0 auto;
+    padding: 1rem 1rem 5.5rem;
+    background:
+      radial-gradient(circle at 88% -4%, rgba(11, 138, 67, 0.06), transparent 8rem),
+      #ffffff;
+  }
+
+  .product-main h1 {
+    font-size: 1rem;
+    justify-content: center;
+  }
+
+  .product-main h1+p {
+    text-align: center;
+  }
+
+  .product-main .grid.grid-cols-2 {
+    gap: 0.75rem;
+  }
+
+  .product-main .bg-white {
+    border-color: rgba(226, 232, 240, 0.9);
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.07);
+  }
+
+  .mobile-nav {
+    max-width: 430px;
+    margin: 0 auto;
+    left: 50%;
+    transform: translateX(-50%);
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+  .drawer-layer {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+  }
+
+  .drawer-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.45);
+    backdrop-filter: blur(2px);
+  }
+
+  .drawer-panel {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: min(78vw, 310px);
+    overflow: hidden;
+    border-radius: 0 24px 24px 0;
+    background: #fff;
+    box-shadow: 24px 0 60px rgba(15, 23, 42, 0.24);
+  }
+
+  [dir="rtl"] .drawer-panel {
+    inset: 0 0 0 auto;
+    border-radius: 24px 0 0 24px;
+  }
+
+  .drawer-silhouette {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 2.6rem;
+    height: 8rem;
+    background:
+      radial-gradient(circle at 50% 15%, rgba(11, 138, 67, 0.18) 0 2rem, transparent 2.05rem),
+      linear-gradient(to top, rgba(11, 138, 67, 0.16), rgba(11, 138, 67, 0));
+    clip-path: polygon(0 100%, 0 58%, 8% 58%, 8% 46%, 12% 46%, 12% 30%, 15% 30%, 15% 46%, 19% 46%, 19% 58%, 30% 58%, 30% 35%, 38% 18%, 46% 35%, 46% 58%, 54% 58%, 54% 42%, 60% 42%, 60% 28%, 63% 28%, 63% 42%, 68% 42%, 68% 58%, 82% 58%, 82% 44%, 86% 44%, 86% 30%, 89% 30%, 89% 44%, 93% 44%, 93% 58%, 100% 58%, 100% 100%);
+  }
+}
+
+.settings-list {
+  overflow: hidden;
+  border-radius: 18px;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  background: #fff;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.07);
+}
+
+.settings-row {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.72);
+  background: #fff;
+  font-size: 0.8125rem;
+  color: #111827;
+  text-align: left;
+}
+
+.settings-row:last-child {
+  border-bottom: 0;
+}
+
+.settings-icon {
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  place-items: center;
+  border-radius: 999px;
+  flex: none;
+}
+
+/* ── Clean & Premium Dark Mode Style Rules ── */
+body.dark {
+  background-color: #070e0a !important;
+  color: #f8fafc !important;
+}
+
+body.dark .bg-slate-50,
+body.dark .min-h-screen.bg-slate-50,
+body.dark main.bg-slate-50 {
+  background-color: #070e0a !important;
+}
+
+body.dark header,
+body.dark aside,
+body.dark nav,
+body.dark .bg-white,
+body.dark .settings-list,
+body.dark .glass-card,
+body.dark .drawer-panel,
+body.dark .bg-white.p-6,
+body.dark .bg-white.p-4 {
+  background-color: #0e1812 !important;
+  background: #0e1812 !important;
+  border-color: #1c2e24 !important;
+}
+
+/* Settings row adjustments to ensure readable text labels */
+body.dark .settings-row {
+  background-color: #0e1812 !important;
+  background: #0e1812 !important;
+  border-color: #1c2e24 !important;
+  color: #f8fafc !important;
+}
+
+body.dark .settings-row span {
+  color: #f8fafc !important;
+}
+
+body.dark .settings-row span.text-slate-500 {
+  color: #94a3b8 !important;
+}
+
+body.dark .border,
+body.dark .border-t,
+body.dark .border-b,
+body.dark .border-r,
+body.dark .border-l,
+body.dark .border-slate-100,
+body.dark .border-slate-200,
+body.dark .border-slate-200\/50,
+body.dark .border-slate-200\/80 {
+  border-color: #1c2e24 !important;
+}
+
+body.dark .text-slate-900,
+body.dark .text-slate-950,
+body.dark h1,
+body.dark h2:not(.text-slate-400),
+body.dark h3,
+body.dark h4 {
+  color: #f8fafc !important;
+}
+
+body.dark .text-slate-700,
+body.dark .text-slate-800,
+body.dark .text-slate-650,
+body.dark .text-slate-600 {
+  color: #cbd5e1 !important;
+}
+
+/* Set higher contrast for muted text/subtitles in dark mode */
+body.dark .text-slate-500,
+body.dark .text-slate-400,
+body.dark p.text-slate-500 {
+  color: #94a3b8 !important;
+}
+
+body.dark .bg-slate-50,
+body.dark .bg-slate-100,
+body.dark .hover\:bg-slate-50:hover,
+body.dark .hover\:bg-slate-100:hover,
+body.dark .settings-row:hover {
+  background-color: #17271e !important;
+}
+
+body.dark input,
+body.dark select,
+body.dark textarea {
+  background-color: #132018 !important;
+  border-color: #1c2e24 !important;
+  color: #ffffff !important;
+}
+
+body.dark option {
+  background-color: #132018 !important;
+  color: #ffffff !important;
+}
+
+/* Modal and Drawers */
+body.dark .fixed.inset-0.bg-slate-900\/40,
+body.dark .fixed.inset-0.bg-slate-900\/40.backdrop-blur-xs {
+  background-color: rgba(0, 0, 0, 0.75) !important;
+}
+
+/* Make logo images visible in dark mode using CSS filters to convert dark strokes to white */
+body.dark header img,
+body.dark aside img {
+  filter: brightness(0) invert(1) !important;
+}
+
+/* Active states for lists and buttons */
+body.dark .bg-emerald-50\/10 {
+  background-color: rgba(16, 185, 129, 0.12) !important;
+}
+body.dark .bg-red-50\/10 {
+  background-color: rgba(239, 68, 68, 0.12) !important;
+}
+body.dark .border-emerald-200 {
+  border-color: rgba(16, 185, 129, 0.35) !important;
+}
+body.dark .border-red-100 {
+  border-color: rgba(239, 68, 68, 0.35) !important;
+}
+body.dark .text-red-650 {
+  color: #f87171 !important;
+}
+
+/* Language pills background in header */
+body.dark header .bg-slate-100 {
+  background-color: #132018 !important;
+  border-color: #1c2e24 !important;
+}
+body.dark header .text-slate-600 {
+  color: #94a3b8 !important;
+}
+
+/* Settings icons in Dark Mode */
+body.dark .settings-icon.bg-emerald-50 {
+  background-color: rgba(11, 138, 67, 0.2) !important;
+  color: #22c55e !important;
+}
+body.dark .settings-icon.bg-amber-50 {
+  background-color: rgba(245, 158, 11, 0.2) !important;
+  color: #fbbf24 !important;
+}
+body.dark .settings-icon.bg-red-50 {
+  background-color: rgba(239, 68, 68, 0.2) !important;
+  color: #f87171 !important;
+}
+body.dark .settings-icon.bg-blue-50 {
+  background-color: rgba(59, 130, 246, 0.2) !important;
+  color: #60a5fa !important;
+}
+body.dark .settings-icon.bg-slate-50 {
+  background-color: rgba(100, 116, 139, 0.2) !important;
+  color: #94a3b8 !important;
+}
